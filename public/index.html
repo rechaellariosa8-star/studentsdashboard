@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Classroom | Student dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Newsreader:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside class="side">
+  <div class="brand">Classroom</div>
+  <p class="side-note">Filter the whole dashboard by course.</p>
+  <nav id="courses" class="courses" aria-label="Courses"></nav>
+</aside>
+
+<main class="main">
+  <header class="top">
+    <div>
+      <h1>How the class is doing</h1>
+      <p class="sub" id="subline">Loading students</p>
+    </div>
+    <div class="tools">
+      <input id="search" type="search" placeholder="Search students" aria-label="Search students">
+      <button class="btn primary" id="addBtn">Add student</button>
+    </div>
+  </header>
+
+  <div class="alert" id="alert" hidden></div>
+
+  <section class="summary">
+    <div><b id="sCount">0</b><span>Students</span></div>
+    <div><b id="sAvg">0</b><span>Class average</span></div>
+    <div><b id="sRisk" class="warn">0</b><span>Failed (3.00)</span></div>
+    <div><b id="sTop" class="small">None yet</b><span id="sTopGrade">Top student</span></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <h2>Every student on the grade scale</h2>
+      <span class="hint">Each dot is a student. Hover a dot to see who.</span>
+    </div>
+    <div id="ruler" class="ruler"></div>
+  </section>
+
+  <section class="card">
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Student</th><th>Course</th><th class="num">Year</th><th>Grade</th><th>Status</th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<dialog id="dlg">
+  <h2 id="dlgTitle">Add student</h2>
+  <input type="hidden" id="fId">
+  <label for="fName">Full name</label>
+  <input id="fName" autocomplete="off">
+  <label for="fCourse">Course</label>
+  <input id="fCourse" autocomplete="off" placeholder="Example: BSIT-1D">
+  <div class="row">
+    <div><label for="fYear">Year level</label>
+      <select id="fYear"><option value="1">1st year</option><option value="2">2nd year</option><option value="3">3rd year</option><option value="4">4th year</option></select></div>
+    <div><label for="fGrade">Grade (1.00 to 3.00)</label><input id="fGrade" type="number" min="1" max="3" step="0.01"></div>
+  </div>
+  <div class="error" id="err"></div>
+  <div class="form-actions">
+    <button class="btn ghost" id="cancelBtn">Cancel</button>
+    <button class="btn primary" id="saveBtn">Save student</button>
+  </div>
+</dialog>
+<script src="app.js"></script>
+</body>
+</html>
